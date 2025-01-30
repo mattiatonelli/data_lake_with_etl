@@ -4,3 +4,12 @@ module "s3" {
   resource_tag = var.resource_tag
   environment  = "dev"
 }
+
+module "lambda" {
+  source        = "../../modules/lambda"
+  function_name = "${var.function_name}-dev"
+  handler       = var.handler
+  runtime       = var.runtime
+  role_name     = "${var.role_name}-dev"
+  environment   = "dev"
+}
