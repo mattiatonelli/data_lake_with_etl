@@ -1,8 +1,11 @@
 module "s3" {
-  source       = "../../modules/s3"
-  bucket_name  = "${var.bucket_name}-dev"
-  resource_tag = var.resource_tag
-  environment  = "dev"
+
+module "glue" {
+  source         = "../../modules/glue"
+  glue_role_name = var.glue_role_name
+  glue_job_name  = var.glue_job_name
+  bucket_name    = module.s3.bucket_name
+  environment    = "dev"
 }
 
 module "lambda" {

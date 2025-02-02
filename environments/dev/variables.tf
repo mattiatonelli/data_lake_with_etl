@@ -25,6 +25,17 @@ variable "bucket_name" {
   type        = string
 }
 
+# Glue
+variable "glue_role_name" {
+  description = "The name of the IAM role for Glue"
+  type        = string
+}
+
+variable "glue_job_name" {
+  description = "The name of the Glue job"
+  type        = string
+}
+
 # Lambda
 variable "function_name" {
   description = "The name of the Lambda function"
