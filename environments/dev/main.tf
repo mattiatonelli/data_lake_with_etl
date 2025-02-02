@@ -9,6 +9,16 @@ module "glue" {
 }
 
 module "lambda" {
+  source               = "../../modules/lambda"
+  lambda_function_name = var.lambda_function_name
+  handler              = var.handler
+  runtime              = var.runtime
+  lambda_role_name     = var.lambda_role_name
+  bucket_name          = var.bucket_name
+  glue_job_arn         = module.glue.glue_job_arn
+  environment          = "dev"
+}
+
 module "eventbridge" {
   source                 = "../../modules/eventbridge"
   event_bridge_rule_name = var.event_bridge_rule_name

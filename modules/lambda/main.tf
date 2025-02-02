@@ -8,7 +8,7 @@ data "archive_file" "data_pre_processor_lambda" {
 # Create a Lambda function to process incoming data files
 resource "aws_lambda_function" "data_pre_processor" {
   filename         = data.archive_file.data_pre_processor_lambda.output_path
-  function_name    = var.function_name
+  function_name    = var.lambda_function_name
   role             = aws_iam_role.lambda_exec.arn
   handler          = var.handler
   runtime          = var.runtime
@@ -20,14 +20,14 @@ resource "aws_lambda_function" "data_pre_processor" {
   ]
 
   tags = {
-    Name        = var.function_name
+    Name        = var.lambda_function_name
     Environment = var.environment
   }
 }
 
 # Create an IAM role for the Lambda function
 resource "aws_iam_role" "lambda_exec" {
-  name = var.role_name
+  name = var.lambda_role_name
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -41,10 +41,4 @@ resource "aws_iam_role" "lambda_exec" {
       },
     ]
   })
-}
-
-# Attach the AWSLambdaBasicExecutionRole policy to the Lambda IAM role
-resource "aws_iam_role_policy_attachment" "lambda_exec_policy" {
-  role       = aws_iam_role.lambda_exec.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }

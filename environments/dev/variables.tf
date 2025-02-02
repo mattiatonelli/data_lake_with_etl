@@ -37,7 +37,7 @@ variable "glue_job_name" {
 }
 
 # Lambda
-variable "function_name" {
+variable "lambda_function_name" {
   description = "The name of the Lambda function"
   type        = string
 }
@@ -52,7 +52,7 @@ variable "runtime" {
   type        = string
 }
 
-variable "role_name" {
+variable "lambda_role_name" {
   description = "The name of the IAM role for Lambda execution"
   type        = string
 }
