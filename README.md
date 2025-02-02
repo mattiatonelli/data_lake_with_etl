@@ -1,6 +1,6 @@
-# Data Lake with ETL on AWS
+# Provisioning and managing a Data Lake with ETL on AWS
 
-This project sets up a Data Lake with ETL on AWS using Terraform.
+This project sets up a Data Lake with ETL on AWS using Terraform, an Infrastructure as code (IaC) tool that enables the safe, predictable and scalable provision and management of infrastructure in any cloud.
 
 ## Architecture
 
@@ -26,6 +26,7 @@ aws_session_token=zzz
 
 2. **Update user-specific variables**: In the file `terraform.tfvars` in the desired environment directory (dev, staging, or prod) change the string for the variables:
 
+- `aws_account_id` to match your AWS account ID (e.g. 417472128311).
 - `aws_profile` to match the `profile_name` you copied from the step before.
 - `email` to the desired email address.
 
