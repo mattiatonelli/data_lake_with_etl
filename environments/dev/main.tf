@@ -1,4 +1,12 @@
 module "s3" {
+  source           = "../../modules/s3"
+  aws_account_id   = var.aws_account_id
+  bucket_name      = var.bucket_name
+  lambda_role_name = var.lambda_role_name
+  glue_role_name   = var.glue_role_name
+  resource_tag     = var.resource_tag
+  environment      = "dev"
+}
 
 module "glue" {
   source         = "../../modules/glue"
@@ -42,3 +50,20 @@ module "attach_policies" {
   glue_role_name   = module.glue.glue_role_name
   glue_role_id     = module.glue.glue_role_id
 }
+
+# module "rds" {
+#   source            = "../../modules/rds"
+#   allocated_storage = 20
+#   instance_class    = "db.t2.micro"
+#   db_name           = "devdb"
+#   username          = "admin"
+#   password          = "password"
+#   environment       = "dev"
+# }
+
+# module "sns" {
+#   source      = "../../modules/sns"
+#   topic_name  = "dev-notification-topic"
+#   email       = var.email
+#   environment = "dev"
+# }
