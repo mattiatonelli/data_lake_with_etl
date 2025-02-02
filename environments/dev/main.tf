@@ -6,6 +6,15 @@ module "s3" {
 }
 
 module "lambda" {
+module "eventbridge" {
+  source                 = "../../modules/eventbridge"
+  event_bridge_rule_name = var.event_bridge_rule_name
+  bucket_name            = var.bucket_name
+  object_key             = var.object_key
+  lambda_arn             = module.lambda.lambda_function_arn
+  environment            = "dev"
+}
+
 module "attach_policies" {
   source           = "../../modules/attach_policies"
   aws_account_id   = var.aws_account_id

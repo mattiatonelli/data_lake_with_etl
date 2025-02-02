@@ -45,3 +45,14 @@ variable "role_name" {
   description = "The name of the IAM role for Lambda execution"
   type        = string
 }
+
+# EventBridge
+variable "event_bridge_rule_name" {
+  description = "The name of the EventBridge rule"
+  type        = string
+}
+
+variable "object_key" {
+  description = "The key of the object to trigger the event"
+  type        = string
+}
